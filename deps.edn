@@ -1,0 +1,80 @@
+{
+ :mvn/repos {"clojars" {:url "https://repo.clojars.org/"}
+             "central" {:url "https://repo1.maven.org/maven2/"}}
+
+ ;; don't change target/classes (do not remove it from :paths and
+ ;; do not rename it, otherwise edit build.clj)
+ ;; uncomment java-src if you have java sources.
+ :paths     ["src" "java-src" "resources" "target/classes"]
+
+ :deps      {
+             org.clojure/clojure                        {:mvn/version "1.10.1"}
+
+             ;; metrics
+             io.dropwizard.metrics/metrics-core         {:mvn/version "4.1.2"}
+             io.dropwizard.metrics/metrics-jvm          {:mvn/version "4.1.2"}
+             io.dropwizard.metrics/metrics-healthchecks {:mvn/version "4.1.2"}
+
+             ;; java annotations
+             com.google.code.findbugs/annotations       {:mvn/version "3.0.1"}
+
+             ;;logs & metrics
+             io.pedestal/pedestal.log                   {:mvn/version "0.5.7"}
+             org.slf4j/slf4j-simple                     {:mvn/version "1.7.30"}}
+
+ :build     {
+             ;; uncomment :java-source-paths and :javac-options if you need to compile java sources
+             :java-source-paths "java-src"
+             ;;  ( default options: ["-target" "1.8" "-source" "1.8" "-Xlint:-options"] )
+             :javac-options     ["-target" "1.8" "-source" "1.8" "-Xlint:-options"]
+
+             :group-id          "org.rssys"
+             :artifact-id       "metrics"
+             :artifact-version  "0.1.0"
+             :description       "Metrics library designed to perform monitoring of application and JVM."
+             :url               "https://github.com/redstarssystems/metrics"
+             :scm               {:url "https://github.com/redstarssystems/metrics"}
+             :license           {:name "EPL-2.0"
+                                 :url  "https://www.eclipse.org/legal/epl-2.0/"}}
+
+
+ :aliases   {
+             :repl    {:extra-deps  {criterium            {:mvn/version "0.4.5"}
+                                     nrepl                {:mvn/version "0.6.0"}
+                                     healthsamurai/matcho {:mvn/version "0.3.3"}
+                                     hashp                {:mvn/version "0.1.1"}}
+                       :jvm-opts    ["-Duser.timezone=UTC"]
+                       :extra-paths ["dev/src" "resources" "test"]
+                       :main-opts   ["--main" "nrepl.cmdline"]}
+
+             :test    {:extra-deps  {lambdaisland/kaocha           {:mvn/version "0.0-573"}
+                                     lambdaisland/kaocha-cloverage {:mvn/version "0.0-41"}
+                                     healthsamurai/matcho          {:mvn/version "0.3.3"}}
+                       :extra-paths ["resources" "test" "test/resources"]
+                       :jvm-opts    ["-Duser.timezone=UTC"]
+                       ;;"-DLOG4J_CONFIGURATION_FILE=test/resources/log4j2-test.xml"
+
+                       :main-opts   ["--main" "kaocha.runner"]}
+
+             :bg      {:extra-deps {badigeon/badigeon {:git/url "https://github.com/EwenG/badigeon.git"
+                                                       :sha     "f4bcca58536f49c10a5ea87b662f33ccf83338ce"
+                                                       :tag     "0.0.10"}}}
+
+             ;; build jar (compile java, clj files): clj -R:bg -A:jar
+             :jar     {
+                       :main-opts ["-e" "(load-file,\"dev/src/build.clj\"),(build/clean),(build/compile-java),(build/jar)"]}
+
+             ;; compile java classes only: clj -R:bg -A:javac
+             :javac   {
+                       :main-opts ["-e" "(load-file,\"dev/src/build.clj\"),(build/compile-java)"]}
+
+             ;; install to local .m2: clj -R:bg -A:install
+             :install {
+                       :main-opts ["-e" "(load-file,\"dev/src/build.clj\"),(build/install)"]}
+
+             ;; public to clojars: clj -R:bg -A:deploy
+             :deploy  {
+                       :main-opts ["-e" "(load-file,\"dev/src/build.clj\"),(build/deploy)"]}}}
+
+
+
