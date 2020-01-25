@@ -9,7 +9,7 @@ Library allows to expose metrics via StatsD, JMX, console, logs (slf4j).
 
 For Leiningen add to project.clj: ```[org.rssys/metrics "0.1.0"]```
 
-For Deps CLI add to deps.edn:  ```{:deps {org.rssys/metrics {:mvn/version "0.1.0}}}```
+For Deps CLI add to deps.edn:  ```{:deps {org.rssys/metrics {:mvn/version "0.1.0"}}}```
 
 Import necessary namespaces:
 
