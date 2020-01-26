@@ -31,7 +31,7 @@ This function will be called everytime the guage value is requested.
 
 ### Built-in functions
 
-These functions returns various OS and JVM parameters which may be exposed via metrics.
+These functions return various OS and JVM parameters which may be exposed via metrics.
 
 - **(metrics/free-jvm-mem)** - Get the amount of free memory in the Java Virtual Machine.
 - **(metrics/total-jvm-mem)** - Returns the total amount of memory in the Java virtual machine.  
