@@ -5,11 +5,9 @@ Based on [Coda Hale Metrics](https://metrics.dropwizard.io/4.1.2/)
 and [pedestal.log](https://github.com/pedestal/pedestal/tree/master/log).  
 Library allows to expose metrics via StatsD, JMX, console, logs (slf4j).
 
-## Usage
+[![Clojars Project](https://img.shields.io/clojars/v/org.rssys/metrics.svg)](https://clojars.org/org.rssys/metrics)
 
-For Leiningen add to project.clj: ```[org.rssys/metrics "0.1.0"]```
-
-For Deps CLI add to deps.edn:  ```{:deps {org.rssys/metrics {:mvn/version "0.1.0"}}}```
+##  Usage
 
 Import necessary namespaces:
 
