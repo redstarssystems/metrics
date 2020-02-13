@@ -30,7 +30,7 @@
 
              :group-id          "org.rssys"
              :artifact-id       "metrics"
-             :artifact-version  "0.1.0"
+             :artifact-version  "0.1.1"
              :description       "Metrics library designed to perform monitoring of application and JVM."
              :url               "https://github.com/redstarssystems/metrics"
              :scm               {:url "https://github.com/redstarssystems/metrics"}
